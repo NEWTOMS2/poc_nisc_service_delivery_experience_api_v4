@@ -14,397 +14,189 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
         <apikit:router xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" config-ref="poc_nisc_service_delivery_experience_api_v4-config" />
         <error-handler>
             <on-error-propagate type="APIKIT:BAD_REQUEST">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="50c3d4cd-67b4-4db8-b534-8662869b4d32">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Bad request"}]]></ee:set-payload>
+{
+   error:{
+      errors:[
+         {
+            id:"400",
+            code:"ERR400",
+            status:"400",
+            title:"Bad Request",
+            detail:"The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.",
+            href:"https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+         }
+      ]
+   }
+}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">400</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[400]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:NOT_FOUND">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="1def1b01-1817-42d3-8dda-9d87ec262b08">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Resource not found"}]]></ee:set-payload>
+{
+   error:{
+      errors:[
+         {
+            id:"404",
+            code:"ERR404",
+            status:"404",
+            title:"Not Found",
+            detail:"The server has not found anything matching the Request-URI.",
+            href:"https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+         }
+      ]
+   }
+}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">404</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[404]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="4bc0609a-0520-4a37-a6ff-dddb1cc14e52">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Method not allowed"}]]></ee:set-payload>
+{
+   error:{
+      errors:[
+         {
+            id:"405",
+            code:"ERR405",
+            status:"405",
+            title:"Method Not Allowed",
+            detail:"The method specified in the Request-Line is not allowed for the resource identified by the Request-URI. The response MUST include an Allow header containing a list of valid methods for the requested resource.",
+            href:"https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+         }
+      ]
+   }
+}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">405</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[405]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="443a352d-6056-410a-8ca7-ec9081d2ed6c">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Not acceptable"}]]></ee:set-payload>
+{
+   error:{
+      errors:[
+         {
+            id:"406",
+            code:"ERR406",
+            status:"406",
+            title:"Not Acceptable",
+            detail:"The resource identified by the request is only capable of generating response entities which have content characteristics not acceptable according to the accept headers sent in the request.",
+            href:"https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+         }
+      ]
+   }
+}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">406</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[406]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
             <on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="553c14ac-265b-4268-bc9a-cb37f4d630eb">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Unsupported media type"}]]></ee:set-payload>
+{
+   error:{
+      errors:[
+         {
+            id:"415",
+            code:"ERR415",
+            status:"415",
+            title:"Unsupported Media Type",
+            detail:"The server is refusing to service the request because the entity of the request is in a format not supported by the requested resource for the requested method.",
+            href:"https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+         }
+      ]
+   }
+}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">415</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[415]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
-            <on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
-                <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <on-error-propagate type="ANY" enableNotifications="true" logException="true">
+                <logger level="ERROR" doc:name="Logger" doc:id="d4499df5-862d-455c-af9b-0400da08078e" message="CHECK: #[error]"/>
+				<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:id="3881b4ef-02d9-4ee2-b8ca-b592a9580aef">
                     <ee:message>
                         <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Not Implemented"}]]></ee:set-payload>
+{
+   error:{
+      errors:[
+         {
+            id:"500",
+            code:"ERR500",
+            status:"500",
+            title:"Internal Server Error",
+            detail:error.detailedDescription,
+            href:"https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+         }
+      ]
+   }
+}]]></ee:set-payload>
                     </ee:message>
                     <ee:variables>
-                        <ee:set-variable variableName="httpStatus">501</ee:set-variable>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[500]]></ee:set-variable>
                     </ee:variables>
                 </ee:transform>
             </on-error-propagate>
         </error-handler>
     </flow>
     <flow name="put:\service\order\(id):application\json:poc_nisc_service_delivery_experience_api_v4-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="id">attributes.uriParams.id</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  id: 1234,
-  href: "",
-  name: "",
-  description: "",
-  "type": "",
-  version: "",
-  state: "Active",
-  serviceSpecification: {
-    id: "conferenceBridgeEquipment",
-    href: "http://serverlocation:port/catalogManagement/serviceSpecification /conferenceBridgeEquipment"
-  },
-  serviceCharacteristic: [
-    {
-      name: "numberOfVc500Units",
-      value: "1"
-    }, 
-    {
-      name: "numberOfVc100Units",
-      value: "2"
-    }, 
-    {
-      name: "routerType",
-      value: "CiscoASR1000"
-    }, 
-    {
-      name: "powerSupply",
-      value: "UK"
-    }
-  ],
-  serviceRelationship: [],
-  relatedParty: [],
-  supportingService: [],
-  supportingResource: [],
-  links: [
-    {
-      rel: "/linkrels/service/order/info",
-      uri: "/service/order/1234",
-      method: "GET"
-    }, 
-    {
-      rel: "/linkrels/service/order/updateInfo",
-      uri: "/service/order/1234",
-      method: "PUT"
-    }, 
-    {
-      rel: "/linkrels/service/order/delete",
-      uri: "/service/order/1234",
-      method: "DELETE"
-    }
-  ]
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="setOrderIdVaribleFromURIId" doc:id="d3bd5153-41f4-4ef4-8e73-3e51699dd370" name="setOrderIdVaribleFromURIId" />
+		<flow-ref doc:name="updateServiceOrderById" doc:id="1f676810-7b69-4f9e-ab3a-9baff9455406" name="updateServiceOrderById"/>
     </flow>
     <flow name="delete:\service\order\(id):poc_nisc_service_delivery_experience_api_v4-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="id">attributes.uriParams.id</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
+        <flow-ref doc:name="setOrderIdVaribleFromURIId" doc:id="bf4b40f3-3edf-4d92-a56a-e3ccb1db3362" name="setOrderIdVaribleFromURIId"/>
+        <flow-ref doc:name="deleteServiceOrderById" doc:id="63f11d97-3dd9-414f-bc6e-f02faccced0b" name="deleteServiceOrderById"/>
+		<set-payload value="#[null]" doc:name="Set null Payload" doc:id="2982663d-c3b9-4123-850a-c629a0a6173c" />
         <logger level="INFO" message="delete:\service\order\(id):poc_nisc_service_delivery_experience_api_v4-config" />
     </flow>
     <flow name="get:\service\order:poc_nisc_service_delivery_experience_api_v4-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-[
-  {
-    id: 1234,
-    href: "",
-    name: "",
-    description: "",
-    "type": "",
-    version: "",
-    state: "Active",
-    serviceSpecification: {
-      id: "conferenceBridgeEquipment",
-      href: "http://serverlocation:port/catalogManagement/serviceSpecification /conferenceBridgeEquipment"
-    },
-    serviceCharacteristic: [
-      {
-        name: "numberOfVc500Units",
-        value: "1"
-      }, 
-      {
-        name: "numberOfVc100Units",
-        value: "2"
-      }, 
-      {
-        name: "routerType",
-        value: "CiscoASR1000"
-      }, 
-      {
-        name: "powerSupply",
-        value: "UK"
-      }
-    ],
-    serviceRelationship: [],
-    relatedParty: [],
-    supportingService: [],
-    supportingResource: [],
-    links: [
-      {
-        rel: "/linkrels/service/order/info",
-        uri: "/service/order/1234",
-        method: "GET"
-      }, 
-      {
-        rel: "/linkrels/service/order/updateInfo",
-        uri: "/service/order/1234",
-        method: "PUT"
-      }, 
-      {
-        rel: "/linkrels/service/order/delete",
-        uri: "/service/order/1234",
-        method: "DELETE"
-      }
-    ]
-  }, 
-  {
-    id: 5678,
-    href: "",
-    name: "",
-    description: "",
-    "type": "",
-    version: "",
-    state: "Active",
-    serviceSpecification: {
-      id: "conferenceBridgeEquipment",
-      href: "http://serverlocation:port/catalogManagement/serviceSpecification /conferenceBridgeEquipment"
-    },
-    serviceCharacteristic: [
-      {
-        name: "numberOfVc500Units",
-        value: "1"
-      }, 
-      {
-        name: "numberOfVc100Units",
-        value: "2"
-      }, 
-      {
-        name: "routerType",
-        value: "CiscoASR1000"
-      }, 
-      {
-        name: "powerSupply",
-        value: "UK"
-      }
-    ],
-    serviceRelationship: [],
-    relatedParty: [],
-    supportingService: [],
-    supportingResource: [],
-    links: [
-      {
-        rel: "/linkrels/service/order/info",
-        uri: "/service/order/5678",
-        method: "GET"
-      }, 
-      {
-        rel: "/linkrels/service/order/updateInfo",
-        uri: "/service/order/5678",
-        method: "PUT"
-      }, 
-      {
-        rel: "/linkrels/service/order/delete",
-        uri: "/service/order/5678",
-        method: "DELETE"
-      }
-    ]
-  }
-]]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="getAllServiceOrderByFilters" doc:id="2d4dc927-0ddb-4731-8631-d80f71d1fde2" name="getAllServiceOrderByFilters"/>
     </flow>
     <flow name="get:\service\order\(id):poc_nisc_service_delivery_experience_api_v4-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
-            <ee:variables>
-                <ee:set-variable variableName="id">attributes.uriParams.id</ee:set-variable>
-            </ee:variables>
-        </ee:transform>
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  id: 1234,
-  href: "",
-  name: "",
-  description: "",
-  "type": "",
-  version: "",
-  state: "Active",
-  serviceSpecification: {
-    id: "conferenceBridgeEquipment",
-    href: "http://serverlocation:port/catalogManagement/serviceSpecification /conferenceBridgeEquipment"
-  },
-  serviceCharacteristic: [
-    {
-      name: "numberOfVc500Units",
-      value: "1"
-    }, 
-    {
-      name: "numberOfVc100Units",
-      value: "2"
-    }, 
-    {
-      name: "routerType",
-      value: "CiscoASR1000"
-    }, 
-    {
-      name: "powerSupply",
-      value: "UK"
-    }
-  ],
-  serviceRelationship: [],
-  relatedParty: [],
-  supportingService: [],
-  supportingResource: [],
-  links: [
-    {
-      rel: "/linkrels/service/order/info",
-      uri: "/service/order/1234",
-      method: "GET"
-    }, 
-    {
-      rel: "/linkrels/service/order/updateInfo",
-      uri: "/service/order/1234",
-      method: "PUT"
-    }, 
-    {
-      rel: "/linkrels/service/order/delete",
-      uri: "/service/order/1234",
-      method: "DELETE"
-    }
-  ]
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="setOrderIdVaribleFromURIId" doc:id="54bd01b9-4a07-4892-a18e-a7112ad37804" name="setOrderIdVaribleFromURIId"/>
+        <flow-ref doc:name="getServiceOrderById" doc:id="aed73b1b-04c9-4998-ae3c-0293358c79ad" name="getServiceOrderById"/>
     </flow>
     <flow name="post:\service\order:application\json:poc_nisc_service_delivery_experience_api_v4-config">
-        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-            <ee:message>
-                <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{
-  id: 1234,
-  state: "Active",
-  serviceSpecification: {
-    id: "conferenceBridgeEquipment",
-    href: "http://serverlocation:port/catalogManagement/serviceSpecification /conferenceBridgeEquipment"
-  },
-  serviceCharacteristic: [
-    {
-      name: "numberOfVc500Units",
-      value: "1"
-    }, 
-    {
-      name: "numberOfVc100Units",
-      value: "2"
-    }, 
-    {
-      name: "routerType",
-      value: "CiscoASR1000"
-    }, 
-    {
-      name: "powerSupply",
-      value: "UK"
-    }
-  ],
-  relatedParty: [
-    {
-      role: "Subscriber",
-      id: "1234",
-      href: "http://serverLocation:port/partyManagement/partyRole/1234"
-    }
-  ],
-  links: [
-    {
-      rel: "/linkrels/service/order/info",
-      uri: "/service/order/1234",
-      method: "GET"
-    }, 
-    {
-      rel: "/linkrels/service/order/updateInfo",
-      uri: "/service/order/1234",
-      method: "PUT"
-    }, 
-    {
-      rel: "/linkrels/service/order/delete",
-      uri: "/service/order/1234",
-      method: "DELETE"
-    }
-  ]
-}]]></ee:set-payload>
-            </ee:message>
-        </ee:transform>
+        <flow-ref doc:name="createAServiceOrderToProcess" doc:id="ec927047-b88f-46cd-99d4-775f55e6cf12" name="createAServiceOrderToProcess"/>
     </flow>
+    <sub-flow name="setOrderIdVaribleFromURIId" doc:id="4e211f8e-1d51-428e-aee4-b708319dfb66" >
+		<ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" doc:id="6d1113bb-ee6a-405b-b60d-9a96fef694f2">
+            <ee:variables>
+                <ee:set-variable variableName="id"><![CDATA[attributes.uriParams.id]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+	</sub-flow>
 </mule>
